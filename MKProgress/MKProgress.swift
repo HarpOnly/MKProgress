@@ -39,7 +39,6 @@ public final class MKProgress {
     /// Returns 'UIWindow'.
     fileprivate func getHUDWindow() -> UIWindow {
         let hudWindow = UIWindow()
-        hudWindow.frame = UIScreen.main.bounds
         hudWindow.isHidden = false
         hudWindow.windowLevel = UIWindow.Level.normal
         hudWindow.backgroundColor = UIColor.clear
