@@ -38,7 +38,12 @@ public final class MKProgress {
     /// 'MKProgressViewController' initialization and settting as rootViewController for the window.
     /// Returns 'UIWindow'.
     fileprivate func getHUDWindow() -> UIWindow {
-        let hudWindow = UIWindow()
+        let hudWindow: UIWindow
+        if self.hudWindow != nil {
+            hudWindow = self.hudWindow!
+        } else {
+            hudWindow = UIWindow()
+        }
         hudWindow.isHidden = false
         hudWindow.windowLevel = UIWindow.Level.normal
         hudWindow.backgroundColor = UIColor.clear
@@ -65,7 +70,6 @@ extension MKProgress {
             return
         }
 
-        guard shared.hudWindow == nil else { return }
         makeKeyWindowVisible(animated)
     }
     
@@ -128,8 +132,6 @@ extension MKProgress {
             progress.isDismissing = false
             
             progress.stopAnimatoins()
-            progress.hudWindow?.resignKey()
-            progress.hudWindow = nil
         }
         
         MKProgress.shared.isWaitingToShow = false
