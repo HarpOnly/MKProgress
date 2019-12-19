@@ -130,8 +130,9 @@ extension MKProgress {
         let progress = MKProgress.shared
         func hideProgressHud() {
             progress.isDismissing = false
-            
             progress.stopAnimatoins()
+            guard let mainWindow = UIApplication.shared.windows.first else { return }
+            mainWindow.makeKeyAndVisible()
         }
         
         MKProgress.shared.isWaitingToShow = false
